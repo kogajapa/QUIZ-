@@ -254,55 +254,114 @@ def monitor_youtube_chat():
         url = quiz_config.get('youtube_url', '')
         if not url:
             logger.error("URL do YouTube não configurada")
+            socketio.emit('chat_message', {
+                'author': 'Sistema',
+                'message': 'Erro: URL do YouTube não configurada'
+            })
+            # Fallback para simulação
+            logger.info("Iniciando simulação de chat como fallback (URL não configurada)")
+            is_chat_running = True
+            is_simulator_running = True
+            chat_thread = threading.Thread(target=simulate_chat_messages)
+            chat_thread.daemon = True
+            chat_thread.start()
             return
         
         # Normalizar a URL do YouTube
         normalized_url = normalize_youtube_url(url)
         if not normalized_url:
             logger.error(f"URL inválida: {url}")
+            socketio.emit('chat_message', {
+                'author': 'Sistema',
+                'message': f'Erro: URL do YouTube inválida: {url}'
+            })
+            # Fallback para simulação
+            logger.info("Iniciando simulação de chat como fallback (URL inválida)")
+            is_chat_running = True
+            is_simulator_running = True
+            chat_thread = threading.Thread(target=simulate_chat_messages)
+            chat_thread.daemon = True
+            chat_thread.start()
             return
         
         logger.info(f"Conectando ao chat do YouTube: {normalized_url}")
+        socketio.emit('chat_message', {
+            'author': 'Sistema',
+            'message': f'Tentando conectar ao chat do YouTube: {normalized_url}'
+        })
         
         # Desativar o simulador e ativar o chat real
         is_simulator_running = False
         is_chat_running = True
         
-        # Configurar o chat downloader
-        chat_downloader = ChatDownloader()
-        chat = chat_downloader.get_chat(normalized_url, timeout=60, max_attempts=5)
-        
-        # Processar mensagens do chat
-        for message in chat:
-            if not is_chat_running:
-                break
-                
-            try:
-                author = message.get('author', {}).get('name', 'Anônimo')
-                text = message.get('message', '')
-                
-                # Verificar se é um voto válido
-                if text.startswith('!'):
-                    vote = text.lower().strip()
-                    if vote in ['!a', '!b', '!c', '!d']:
-                        option_index = {'!a': 0, '!b': 1, '!c': 2, '!d': 3}[vote]
-                        register_vote(author, option_index)
-                
-                # Emitir mensagem para o cliente
-                socketio.emit('chat_message', {
-                    'author': author,
-                    'message': text
-                })
-                
-                logger.debug(f"Mensagem do chat: {author} -> {text}")
-            except Exception as e:
-                logger.error(f"Erro ao processar mensagem do chat: {str(e)}")
+        try:
+            # Configurar o chat downloader
+            chat_downloader = ChatDownloader()
+            logger.info("ChatDownloader inicializado")
+            socketio.emit('chat_message', {
+                'author': 'Sistema',
+                'message': 'Inicializando conexão com o chat...'
+            })
+            
+            # Adicionar mais logs para diagnóstico
+            logger.info(f"Tentando obter chat para URL: {normalized_url}")
+            chat = chat_downloader.get_chat(normalized_url, timeout=60, max_attempts=5)
+            logger.info("Conexão com chat estabelecida com sucesso")
+            socketio.emit('chat_message', {
+                'author': 'Sistema',
+                'message': 'Conexão com chat estabelecida com sucesso!'
+            })
+            
+            # Processar mensagens do chat
+            for message in chat:
+                if not is_chat_running:
+                    break
+                    
+                try:
+                    author = message.get('author', {}).get('name', 'Anônimo')
+                    text = message.get('message', '')
+                    
+                    # Verificar se é um voto válido
+                    if text.startswith('!'):
+                        vote = text.lower().strip()
+                        if vote in ['!a', '!b', '!c', '!d']:
+                            option_index = {'!a': 0, '!b': 1, '!c': 2, '!d': 3}[vote]
+                            register_vote(author, option_index)
+                    
+                    # Emitir mensagem para o cliente
+                    socketio.emit('chat_message', {
+                        'author': author,
+                        'message': text
+                    })
+                    
+                    logger.debug(f"Mensagem do chat: {author} -> {text}")
+                except Exception as e:
+                    logger.error(f"Erro ao processar mensagem do chat: {str(e)}")
+        except Exception as e:
+            error_msg = f"Erro ao conectar ao chat do YouTube: {str(e)}"
+            logger.error(error_msg)
+            socketio.emit('chat_message', {
+                'author': 'Sistema',
+                'message': f'Erro ao conectar ao chat: {str(e)}'
+            })
+            # Fallback para simulação em caso de erro de conexão
+            logger.info("Iniciando simulação de chat como fallback (erro de conexão)")
+            is_chat_running = True
+            is_simulator_running = True
+            chat_thread = threading.Thread(target=simulate_chat_messages)
+            chat_thread.daemon = True
+            chat_thread.start()
     
     except Exception as e:
-        logger.error(f"Erro ao monitorar chat do YouTube: {str(e)}")
+        error_msg = f"Erro ao monitorar chat do YouTube: {str(e)}"
+        logger.error(error_msg)
+        socketio.emit('chat_message', {
+            'author': 'Sistema',
+            'message': error_msg
+        })
         # Fallback para simulação em caso de erro
         if not is_chat_running and not is_simulator_running:
-            logger.info("Iniciando simulação de chat como fallback")
+            logger.info("Iniciando simulação de chat como fallback (erro geral)")
             is_chat_running = True
             is_simulator_running = True
             chat_thread = threading.Thread(target=simulate_chat_messages)
@@ -871,11 +930,13 @@ def api_connect_youtube():
         url = data.get('url', '')
         
         if not url:
+            logger.error("URL não fornecida")
             return jsonify({'success': False, 'message': 'URL não fornecida'}), 400
         
         # Normalizar a URL do YouTube
         normalized_url = normalize_youtube_url(url)
         if not normalized_url:
+            logger.error(f"URL do YouTube inválida: {url}")
             return jsonify({'success': False, 'message': 'URL do YouTube inválida'}), 400
         
         # Atualizar configuração
@@ -902,7 +963,7 @@ def api_connect_youtube():
         # Enviar mensagem de sistema
         socketio.emit('chat_message', {
             'author': 'Sistema',
-            'message': f'Conectando ao chat do YouTube: {normalized_url}'
+            'message': f'Tentando conectar ao chat do YouTube: {normalized_url}'
         })
         
         # Aguardar um momento para garantir que o thread anterior parou
@@ -915,12 +976,42 @@ def api_connect_youtube():
         chat_thread.daemon = True
         chat_thread.start()
         
-        logger.info(f"Conectado ao chat do YouTube: {normalized_url}")
-        return jsonify({'success': True, 'message': 'Conectado ao chat do YouTube com sucesso'})
+        logger.info(f"Iniciado thread para conectar ao chat do YouTube: {normalized_url}")
+        
+        # Retornar sucesso imediatamente, mesmo que a conexão real ainda esteja em andamento
+        # O feedback real será enviado via Socket.IO diretamente para o cliente
+        return jsonify({
+            'success': True, 
+            'message': 'Tentando conectar ao chat do YouTube. Aguarde mensagens de status no chat.'
+        })
     
     except Exception as e:
-        logger.error(f"Erro ao conectar ao chat do YouTube: {str(e)}")
-        return jsonify({'success': False, 'message': str(e)}), 500
+        error_msg = f"Erro ao conectar ao chat do YouTube: {str(e)}"
+        logger.error(error_msg)
+        
+        # Ativar o simulador como fallback
+        logger.info("Ativando simulador de chat como fallback devido a erro")
+        quiz_config['enable_chat_simulator'] = True
+        save_config()
+        
+        # Iniciar simulador
+        is_chat_running = True
+        is_simulator_running = True
+        chat_thread = threading.Thread(target=simulate_chat_messages)
+        chat_thread.daemon = True
+        chat_thread.start()
+        
+        # Notificar o cliente sobre o erro e o fallback
+        socketio.emit('chat_message', {
+            'author': 'Sistema',
+            'message': f'Erro ao conectar: {str(e)}. Simulador de chat ativado como fallback.'
+        })
+        
+        return jsonify({
+            'success': False, 
+            'message': f'{error_msg}. Simulador de chat ativado como fallback.',
+            'fallback': True
+        }), 500
 
 # Função para obter o ranking atual
 def get_ranking():
