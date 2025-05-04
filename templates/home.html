@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Live Quiz - Configurações</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <!-- Adicionar isso para debug -->
+    <script>
+        // Interceptar erros de console e exibi-los na página
+        const originalConsoleError = console.error;
+        console.error = function() {
+            // Chamar a função original
+            originalConsoleError.apply(console, arguments);
+            
+            // Criar elemento para exibir o erro
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'debug-error';
+            errorDiv.textContent = Array.from(arguments).join(' ');
+            document.body.appendChild(errorDiv);
+            
+            // Remover após 10 segundos
+            setTimeout(() => {
+                if (document.body.contains(errorDiv)) {
+                    document.body.removeChild(errorDiv);
+                }
+            }, 10000);
+        };
+    </script>
+</head>
+<body class="home-page">
+    <div class="container">
+        <header>
+            <h1>YouTube Live Quiz</h1>
+            <p>Configure seu quiz interativo para transmissões ao vivo</p>
+        </header>
+
+        <main>
+            <section class="config-section">
+                <h2><i class="fas fa-cog"></i> Configurações do Quiz</h2>
+                <form id="configForm">
+                    <div class="form-group">
+                        <label for="youtubeUrl">Link da Transmissão ao Vivo:</label>
+                        <div class="url-input-container">
+                            <input type="url" id="youtubeUrl" placeholder="https://www.youtube.com/watch?v=..." required>
+                            <button type="button" id="btnTestConnection" class="btn secondary">Testar Conexão</button>
+                        </div>
+                        <small>Cole o link completo da sua transmissão ao vivo no YouTube</small>
+                        <div id="connectionStatus" class="connection-status"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="answerTime">Tempo para Resposta (segundos):</label>
+                        <input type="number" id="answerTime" min="5" max="60" value="20" required>
+                        <small>Tempo que os participantes terão para responder cada pergunta</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="voteCountingTime">Tempo para Contabilizar Votos (segundos):</label>
+                        <input type="number" id="voteCountingTime" min="3" max="30" value="8" required>
+                        <small>Tempo adicional para contabilizar votos após o tempo de resposta (compensa o delay da transmissão)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resultDisplayTime">Tempo de Exibição dos Resultados (segundos):</label>
+                        <input type="number" id="resultDisplayTime" min="3" max="30" value="5" required>
+                        <small>Tempo que o popup de resultados ficará visível antes de passar para a próxima pergunta</small>
+                    </div>
+
+                    <!-- Opção para ativar/desativar o simulador de chat -->
+                    <div class="form-group">
+                        <label for="enableChatSimulator">Simulador de Chat:</label>
+                        <div class="toggle-switch-container">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="enableChatSimulator" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span id="simulatorStatus">Ativado</span>
+                        </div>
+                        <small>Desative para usar o chat real do YouTube. Ative para usar o simulador durante testes.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cores do Quiz:</label>
+                        <div class="color-picker-container">
+                            <div class="color-picker">
+                                <label for="primaryColor">Cor Principal:</label>
+                                <input type="color" id="primaryColor" value="#f39c12">
+                                <small>Usada em botões, bordas e elementos de destaque</small>
+                            </div>
+                            <div class="color-picker">
+                                <label for="secondaryColor">Cor Secundária:</label>
+                                <input type="color" id="secondaryColor" value="#8e44ad">
+                                <small>Usada em elementos complementares</small>
+                            </div>
+                        </div>
+                        <div class="color-presets">
+                            <span>Presets:</span>
+                            <button type="button" class="color-preset" data-primary="#f39c12" data-secondary="#8e44ad" style="background: linear-gradient(to right, #f39c12 50%, #8e44ad 50%);">Laranja/Roxo</button>
+                            <button type="button" class="color-preset" data-primary="#3498db" data-secondary="#e74c3c" style="background: linear-gradient(to right, #3498db 50%, #e74c3c 50%);">Azul/Vermelho</button>
+                            <button type="button" class="color-preset" data-primary="#2ecc71" data-secondary="#9b59b6" style="background: linear-gradient(to right, #2ecc71 50%, #9b59b6 50%);">Verde/Roxo</button>
+                            <button type="button" class="color-preset" data-primary="#e67e22" data-secondary="#3498db" style="background: linear-gradient(to right, #e67e22 50%, #3498db 50%);">Laranja/Azul</button>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary"><i class="fas fa-save"></i> Salvar Configurações</button>
+                        <a href="/quiz" class="btn success"><i class="fas fa-play"></i> Iniciar Quiz</a>
+                    </div>
+                </form>
+            </section>
+
+            <section class="questions-section">
+                <h2><i class="fas fa-question-circle"></i> Gerenciar Perguntas</h2>
+                
+                <div class="questions-actions">
+                    <button id="btnImportQuestions" class="btn info"><i class="fas fa-file-import"></i> Importar JSON</button>
+                    <button id="btnExportQuestions" class="btn info"><i class="fas fa-file-export"></i> Exportar JSON</button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>YouTube Live Quiz &copy; 2025 - Todos os direitos reservados</p>
+        </footer>
+    </div>
+
+    <!-- Modal para adicionar/editar pergunta -->
+    <div id="questionModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Adicionar Pergunta</h2>
+            
+            <form id="questionForm">
+                <input type="hidden" id="questionIndex" value="-1">
+                
+                <div class="form-group">
+                    <label for="questionText">Pergunta:</label>
+                    <input type="text" id="questionText" placeholder="Digite a pergunta..." required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Opções:</label>
+                    <div class="option-group">
+                        <span class="option-letter">A</span>
+                        <input type="text" id="optionA" placeholder="Opção A" required>
+                    </div>
+                    <div class="option-group">
+                        <span class="option-letter">B</span>
+                        <input type="text" id="optionB" placeholder="Opção B" required>
+                    </div>
+                    <div class="option-group">
+                        <span class="option-letter">C</span>
+                        <input type="text" id="optionC" placeholder="Opção C" required>
+                    </div>
+                    <div class="option-group">
+                        <span class="option-letter">D</span>
+                        <input type="text" id="optionD" placeholder="Opção D" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="correctAnswer">Resposta Correta:</label>
+                    <select id="correctAnswer" required>
+                        <option value="0">A</option>
+                        <option value="1">B</option>
+                        <option value="2">C</option>
+                        <option value="3">D</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="explanation">Explicação da Resposta Correta:</label>
+                    <textarea id="explanation" placeholder="Explique por que esta é a resposta correta..." required></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn primary">Salvar Pergunta</button>
+                    <button type="button" class="btn danger" id="btnCancelQuestion">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para importar JSON -->
+    <div id="importModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Importar Perguntas (JSON)</h2>
+            
+            <div class="form-group">
+                <label for="jsonImport">Cole o JSON de perguntas abaixo:</label>
+                <textarea id="jsonImport" rows="10" placeholder='[{"question": "Pergunta?", "options": ["Opção A", "Opção B", "Opção C", "Opção D"], "correct_answer": 0, "explanation": "Explicação"}]'></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <button id="btnConfirmImport" class="btn primary">Importar</button>
+                <button id="btnCancelImport" class="btn danger">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="fileImport" accept=".json" style="display: none;">
+
+    <!-- Carregando primeiro o arquivo de configuração -->
+    <script src="{{ url_for('static', filename='js/config.js') }}"></script>
+    <!-- Depois carregando o arquivo principal que depende das configurações -->
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+    <!-- Carregando o arquivo de importação/exportação de JSON -->
+    <script src="{{ url_for('static', filename='js/import.js') }}"></script>
+</body>
+</html>

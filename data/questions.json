@@ -1,0 +1,772 @@
+[
+    {
+        "correct_answer": 2,
+        "explanation": "Brasília é a capital federal do Brasil desde 21 de abril de 1960.",
+        "options": [
+            "Rio de Janeiro",
+            "São Paulo",
+            "Brasília",
+            "Salvador"
+        ],
+        "question": "Qual é a capital do Brasil?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "Machado de Assis escreveu 'Dom Casmurro', publicado em 1899.",
+        "options": [
+            "José de Alencar",
+            "Machado de Assis",
+            "Clarice Lispector",
+            "Carlos Drummond de Andrade"
+        ],
+        "question": "Quem escreveu 'Dom Casmurro'?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "O rio Amazonas é o maior rio do mundo em volume de água.",
+        "options": [
+            "Amazonas",
+            "Nilo",
+            "Yangtzé",
+            "Mississippi"
+        ],
+        "question": "Qual é o maior rio do mundo em volume de água?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "A independência do Brasil foi proclamada em 7 de setembro de 1822.",
+        "options": [
+            "1820",
+            "1821",
+            "1823",
+            "1822"
+        ],
+        "question": "Em que ano o Brasil declarou sua independência?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "O elemento químico ouro tem o símbolo Au na tabela periódica.",
+        "options": [
+            "Ag",
+            "Au",
+            "Fe",
+            "Cu"
+        ],
+        "question": "Qual é o símbolo químico do ouro?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "O planeta Terra é o terceiro planeta do sistema solar, contando a partir do Sol.",
+        "options": [
+            "Primeiro",
+            "Segundo",
+            "Terceiro",
+            "Quarto"
+        ],
+        "question": "Qual é a posição da Terra no sistema solar?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "A Revolução Francesa começou em 1789 com a queda da Bastilha.",
+        "options": [
+            "1789",
+            "1799",
+            "1776",
+            "1804"
+        ],
+        "question": "Em que ano começou a Revolução Francesa?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "A Mona Lisa foi pintada por Leonardo da Vinci no início do século XVI.",
+        "options": [
+            "Michelangelo",
+            "Leonardo da Vinci",
+            "Raphael",
+            "Donatello"
+        ],
+        "question": "Quem pintou a Mona Lisa?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "O número pi é aproximadamente 3,14159.",
+        "options": [
+            "2,71828",
+            "1,41421",
+            "3,33333",
+            "3,14159"
+        ],
+        "question": "Qual é o valor aproximado do número pi?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "A Segunda Guerra Mundial terminou em 1945 com a rendição do Japão.",
+        "options": [
+            "1943",
+            "1944",
+            "1945",
+            "1946"
+        ],
+        "question": "Em que ano terminou a Segunda Guerra Mundial?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "O Monte Everest é a montanha mais alta do mundo, com 8.848 metros.",
+        "options": [
+            "Everest",
+            "K2",
+            "Kangchenjunga",
+            "Lhotse"
+        ],
+        "question": "Qual é a montanha mais alta do mundo?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "A teoria da relatividade foi desenvolvida por Albert Einstein.",
+        "options": [
+            "Isaac Newton",
+            "Albert Einstein",
+            "Galileu Galilei",
+            "Stephen Hawking"
+        ],
+        "question": "Quem desenvolveu a teoria da relatividade?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "O Brasil tem 26 estados e 1 Distrito Federal.",
+        "options": [
+            "24",
+            "25",
+            "26",
+            "27"
+        ],
+        "question": "Quantos estados tem o Brasil?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "A clorofila é responsável pela cor verde das plantas e pela fotossíntese.",
+        "options": [
+            "Hemoglobina",
+            "Melanina",
+            "Queratina",
+            "Clorofila"
+        ],
+        "question": "Qual substância dá a cor verde às plantas?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "A cidade de Roma é conhecida como a 'Cidade Eterna'.",
+        "options": [
+            "Roma",
+            "Paris",
+            "Atenas",
+            "Londres"
+        ],
+        "question": "Qual cidade é conhecida como a 'Cidade Eterna'?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "O autor de 'O Pequeno Príncipe' é Antoine de Saint-Exupéry.",
+        "options": [
+            "Victor Hugo",
+            "Antoine de Saint-Exupéry",
+            "Jules Verne",
+            "Gustave Flaubert"
+        ],
+        "question": "Quem escreveu 'O Pequeno Príncipe'?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "O maior deserto do mundo é o Deserto da Antártida, que é um deserto frio.",
+        "options": [
+            "Saara",
+            "Gobi",
+            "Antártida",
+            "Kalahari"
+        ],
+        "question": "Qual é o maior deserto do mundo?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "O DNA é a molécula que contém as informações genéticas dos seres vivos.",
+        "options": [
+            "RNA",
+            "Proteína",
+            "Lipídio",
+            "DNA"
+        ],
+        "question": "Qual molécula contém as informações genéticas?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "O Egito é famoso pelas pirâmides de Gizé, construídas por volta de 2630 a.C.",
+        "options": [
+            "Egito",
+            "México",
+            "Índia",
+            "China"
+        ],
+        "question": "Em que país estão as pirâmides de Gizé?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "A energia nuclear é gerada pela fissão de átomos, geralmente de urânio.",
+        "options": [
+            "Fusão",
+            "Fissão",
+            "Combustão",
+            "Radiação"
+        ],
+        "question": "Qual processo gera energia nuclear?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "A capital da França é Paris, famosa pela Torre Eiffel.",
+        "options": [
+            "Marselha",
+            "Lyon",
+            "Paris",
+            "Nice"
+        ],
+        "question": "Qual é a capital da França?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "A atmosfera terrestre é composta principalmente de nitrogênio (78%).",
+        "options": [
+            "Oxigênio",
+            "Carbono",
+            "Hidrogênio",
+            "Nitrogênio"
+        ],
+        "question": "Qual é o principal gás da atmosfera terrestre?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "O autor de '1984' é George Orwell, publicado em 1949.",
+        "options": [
+            "George Orwell",
+            "Aldous Huxley",
+            "Ray Bradbury",
+            "Philip K. Dick"
+        ],
+        "question": "Quem escreveu '1984'?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "O maior oceano do mundo é o Oceano Pacífico.",
+        "options": [
+            "Atlântico",
+            "Pacífico",
+            "Índico",
+            "Ártico"
+        ],
+        "question": "Qual é o maior oceano do mundo?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "A capital da Argentina é Buenos Aires.",
+        "options": [
+            "Córdoba",
+            "Rosário",
+            "Buenos Aires",
+            "Mendoza"
+        ],
+        "question": "Qual é a capital da Argentina?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "O Sol é classificado como uma estrela anã amarela.",
+        "options": [
+            "Gigante vermelha",
+            "Anã branca",
+            "Supernova",
+            "Anã amarela"
+        ],
+        "question": "Que tipo de estrela é o Sol?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "O pintor de 'A Noite Estrelada' é Vincent van Gogh.",
+        "options": [
+            "Vincent van Gogh",
+            "Claude Monet",
+            "Pablo Picasso",
+            "Edvard Munch"
+        ],
+        "question": "Quem pintou 'A Noite Estrelada'?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "O menor país do mundo é o Vaticano, com cerca de 44 hectares.",
+        "options": [
+            "Mônaco",
+            "Vaticano",
+            "San Marino",
+            "Liechtenstein"
+        ],
+        "question": "Qual é o menor país do mundo?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "A fórmula da água é H₂O, indicando dois átomos de hidrogênio e um de oxigênio.",
+        "options": [
+            "CO₂",
+            "H₂SO₄",
+            "H₂O",
+            "NH₃"
+        ],
+        "question": "Qual é a fórmula química da água?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "A Guerra Fria terminou oficialmente em 1991 com a dissolução da União Soviética.",
+        "options": [
+            "1989",
+            "1990",
+            "1992",
+            "1991"
+        ],
+        "question": "Em que ano terminou a Guerra Fria?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "O autor de 'Hamlet' é William Shakespeare.",
+        "options": [
+            "William Shakespeare",
+            "Christopher Marlowe",
+            "John Milton",
+            "Geoffrey Chaucer"
+        ],
+        "question": "Quem escreveu 'Hamlet'?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "O maior planeta do sistema solar é Júpiter.",
+        "options": [
+            "Saturno",
+            "Júpiter",
+            "Urano",
+            "Netuno"
+        ],
+        "question": "Qual é o maior planeta do sistema solar?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "A capital do Japão é Tóquio.",
+        "options": [
+            "Osaka",
+            "Quioto",
+            "Tóquio",
+            "Hiroshima"
+        ],
+        "question": "Qual é a capital do Japão?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "A fotossíntese converte dióxido de carbono e água em glicose e oxigênio.",
+        "options": [
+            "Respiração",
+            "Fermentação",
+            "Digestão",
+            "Fotossíntese"
+        ],
+        "question": "Qual processo produz oxigênio nas plantas?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "A capital da Austrália é Canberra.",
+        "options": [
+            "Canberra",
+            "Sydney",
+            "Melbourne",
+            "Brisbane"
+        ],
+        "question": "Qual é a capital da Austrália?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "O inventor da lâmpada incandescente comercialmente viável foi Thomas Edison.",
+        "options": [
+            "Nikola Tesla",
+            "Thomas Edison",
+            "Alexander Graham Bell",
+            "Guglielmo Marconi"
+        ],
+        "question": "Quem inventou a lâmpada incandescente?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "O menor osso do corpo humano é o estribo, localizado no ouvido médio.",
+        "options": [
+            "Fêmur",
+            "Rádio",
+            "Estribo",
+            "Clavícula"
+        ],
+        "question": "Qual é o menor osso do corpo humano?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "A capital da Rússia é Moscou.",
+        "options": [
+            "São Petersburgo",
+            "Kazan",
+            "Novosibirsk",
+            "Moscou"
+        ],
+        "question": "Qual é a capital da Rússia?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "O autor de 'Cem Anos de Solidão' é Gabriel García Márquez.",
+        "options": [
+            "Gabriel García Márquez",
+            "Mario Vargas Llosa",
+            "Jorge Luis Borges",
+            "Isabel Allende"
+        ],
+        "question": "Quem escreveu 'Cem Anos de Solidão'?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "A unidade de medida da força no Sistema Internacional é o Newton.",
+        "options": [
+            "Joule",
+            "Newton",
+            "Watt",
+            "Pascal"
+        ],
+        "question": "Qual é a unidade de medida da força?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "O maior mamífero do mundo é a baleia-azul.",
+        "options": [
+            "Elefante",
+            "Girafa",
+            "Baleia-azul",
+            "Rinoceronte"
+        ],
+        "question": "Qual é o maior mamífero do mundo?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "A capital da Índia é Nova Deli.",
+        "options": [
+            "Mumbai",
+            "Calcutá",
+            "Bangalore",
+            "Nova Deli"
+        ],
+        "question": "Qual é a capital da Índia?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "O pintor de 'Guernica' é Pablo Picasso.",
+        "options": [
+            "Pablo Picasso",
+            "Salvador Dalí",
+            "Joan Miró",
+            "Diego Rivera"
+        ],
+        "question": "Quem pintou 'Guernica'?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "A velocidade da luz no vácuo é aproximadamente 300.000 km/s.",
+        "options": [
+            "150.000 km/s",
+            "300.000 km/s",
+            "450.000 km/s",
+            "600.000 km/s"
+        ],
+        "question": "Qual é a velocidade da luz no vácuo?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "A capital da África do Sul é Pretória (executiva).",
+        "options": [
+            "Joanesburgo",
+            "Cidade do Cabo",
+            "Pretória",
+            "Durban"
+        ],
+        "question": "Qual é a capital executiva da África do Sul?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "O principal órgão do sistema circulatório é o coração.",
+        "options": [
+            "Pulmão",
+            "Fígado",
+            "Rim",
+            "Coração"
+        ],
+        "question": "Qual é o principal órgão do sistema circulatório?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "O autor de 'Crime e Castigo' é Fiódor Dostoiévski.",
+        "options": [
+            "Fiódor Dostoiévski",
+            "Liev Tolstói",
+            "Anton Tchekhov",
+            "Ivan Turguêniev"
+        ],
+        "question": "Quem escreveu 'Crime e Castigo'?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "O maior continente da Terra é a Ásia.",
+        "options": [
+            "África",
+            "Ásia",
+            "Austrália",
+            "América do Sul"
+        ],
+        "question": "Qual é o maior continente da Terra?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "A capital do Canadá é Ottawa.",
+        "options": [
+            "Toronto",
+            "Vancouver",
+            "Ottawa",
+            "Montreal"
+        ],
+        "question": "Qual é a capital do Canadá?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "A gravidade na superfície da Terra é aproximadamente 9,8 m/s².",
+        "options": [
+            "7,8 m/s²",
+            "8,8 m/s²",
+            "10,8 m/s²",
+            "9,8 m/s²"
+        ],
+        "question": "Qual é o valor da aceleração da gravidade na Terra?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "O autor de 'Dom Quixote' é Miguel de Cervantes.",
+        "options": [
+            "Miguel de Cervantes",
+            "Lope de Vega",
+            "Garcilaso de la Vega",
+            "Calderón de la Barca"
+        ],
+        "question": "Quem escreveu 'Dom Quixote'?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "O inventor do telefone é Alexander Graham Bell.",
+        "options": [
+            "Thomas Edison",
+            "Alexander Graham Bell",
+            "Guglielmo Marconi",
+            "Samuel Morse"
+        ],
+        "question": "Quem inventou o telefone?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "A capital do México é Cidade do México.",
+        "options": [
+            "Guadalajara",
+            "Monterrey",
+            "Cidade do México",
+            "Cancún"
+        ],
+        "question": "Qual é a capital do México?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "O principal gás do efeito estufa é o dióxido de carbono (CO₂).",
+        "options": [
+            "Metano",
+            "Ozônio",
+            "Nitrogênio",
+            "Dióxido de carbono"
+        ],
+        "question": "Qual é o principal gás do efeito estufa?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "O pintor de 'O Grito' é Edvard Munch.",
+        "options": [
+            "Edvard Munch",
+            "Gustav Klimt",
+            "Egon Schiele",
+            "Henri Matisse"
+        ],
+        "question": "Quem pintou 'O Grito'?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "O menor continente da Terra é a Austrália.",
+        "options": [
+            "Antártida",
+            "Austrália",
+            "Ásia",
+            "África"
+        ],
+        "question": "Qual é o menor continente da Terra?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "A capital da China é Pequim.",
+        "options": [
+            "Xangai",
+            "Hong Kong",
+            "Pequim",
+            "Guangzhou"
+        ],
+        "question": "Qual é a capital da China?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "A unidade de medida de energia no Sistema Internacional é o Joule.",
+        "options": [
+            "Watt",
+            "Newton",
+            "Pascal",
+            "Joule"
+        ],
+        "question": "Qual é a unidade de medida de energia?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "O autor de 'Orgulho e Preconceito' é Jane Austen.",
+        "options": [
+            "Jane Austen",
+            "Charlotte Brontë",
+            "Emily Brontë",
+            "Mary Shelley"
+        ],
+        "question": "Quem escreveu 'Orgulho e Preconceito'?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "O principal órgão do sistema respiratório são os pulmões.",
+        "options": [
+            "Coração",
+            "Pulmões",
+            "Fígado",
+            "Estômago"
+        ],
+        "question": "Qual é o principal órgão do sistema respiratório?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "A capital da Itália é Roma.",
+        "options": [
+            "Milão",
+            "Veneza",
+            "Roma",
+            "Florença"
+        ],
+        "question": "Qual é a capital da Itália?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "O maior osso do corpo humano é o fêmur, localizado na coxa.",
+        "options": [
+            "Tíbia",
+            "Úmero",
+            "Rádio",
+            "Fêmur"
+        ],
+        "question": "Qual é o maior osso do corpo humano?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "O autor de 'O Senhor dos Anéis' é J.R.R. Tolkien.",
+        "options": [
+            "J.R.R. Tolkien",
+            "C.S. Lewis",
+            "George R.R. Martin",
+            "J.K. Rowling"
+        ],
+        "question": "Quem escreveu 'O Senhor dos Anéis'?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "A capital da Espanha é Madri.",
+        "options": [
+            "Barcelona",
+            "Madri",
+            "Valência",
+            "Sevilha"
+        ],
+        "question": "Qual é a capital da Espanha?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "O inventor da teoria da evolução por seleção natural é Charles Darwin.",
+        "options": [
+            "Gregor Mendel",
+            "Louis Pasteur",
+            "Charles Darwin",
+            "Alfred Russel Wallace"
+        ],
+        "question": "Quem desenvolveu a teoria da evolução por seleção natural?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "A capital da Alemanha é Berlim.",
+        "options": [
+            "Munique",
+            "Hamburgo",
+            "Frankfurt",
+            "Berlim"
+        ],
+        "question": "Qual é a capital da Alemanha?"
+    },
+    {
+        "correct_answer": 0,
+        "explanation": "O autor de 'Harry Potter' é J.K. Rowling.",
+        "options": [
+            "J.K. Rowling",
+            "Suzanne Collins",
+            "Stephenie Meyer",
+            "Rick Riordan"
+        ],
+        "question": "Quem escreveu 'Harry Potter'?"
+    },
+    {
+        "correct_answer": 1,
+        "explanation": "A capital do Reino Unido é Londres.",
+        "options": [
+            "Manchester",
+            "Londres",
+            "Birmingham",
+            "Liverpool"
+        ],
+        "question": "Qual é a capital do Reino Unido?"
+    },
+    {
+        "correct_answer": 2,
+        "explanation": "O principal componente do sangue é o plasma.",
+        "options": [
+            "Hemácias",
+            "Plaquetas",
+            "Plasma",
+            "Leucócitos"
+        ],
+        "question": "Qual é o principal componente do sangue?"
+    },
+    {
+        "correct_answer": 3,
+        "explanation": "A capital do Egito é Cairo.",
+        "options": [
+            "Alexandria",
+            "Luxor",
+            "Gizé",
+            "Cairo"
+        ],
+        "question": "Qual é a capital do Egito?"
+    }
+]

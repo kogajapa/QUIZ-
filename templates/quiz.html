@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Live Quiz - Jogo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    
+    <style id="customColors">
+        :root {
+            --primary-color: {{ config.primary_color }};
+            --primary-color-rgb: {{ config.primary_color_rgb }};
+            --primary-light: {{ config.primary_light }};
+            --primary-dark: {{ config.primary_dark }};
+            --secondary-color: {{ config.secondary_color }};
+            --secondary-color-rgb: {{ config.secondary_color_rgb }};
+            --secondary-light: {{ config.secondary_light }};
+            --secondary-dark: {{ config.secondary_dark }};
+        }
+    </style>
+</head>
+<body class="quiz-page">
+    <div class="quiz-container">
+        <!-- Removido o cabeçalho (quiz-header) -->
+
+        <!-- Layout principal de 3 colunas -->
+        <div class="quiz-main">
+            <!-- Coluna 1: Ranking e Tutorial -->
+            <div class="quiz-sidebar left">
+                <div class="quiz-rank">
+                    <h3><i class="fas fa-trophy"></i> Ranking</h3>
+                    <div class="rank-list" id="rankList">
+                        <div class="loading">Carregando ranking...</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-tutorial">
+                    <h3><i class="fas fa-info-circle"></i> Digite no Chat</h3>
+                    <div class="tutorial-content">
+                        <ul class="tutorial-commands">
+                            <li><strong>!a</strong> = Opção A</li>
+                            <li><strong>!b</strong> = Opção B</li>
+                            <li><strong>!c</strong> = Opção C</li>
+                            <li><strong>!d</strong> = Opção D</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Coluna 2: Área principal do Quiz -->
+            <div class="quiz-content">
+                <!-- Removido o div de status do quiz -->
+                
+                <div id="questionContainer" class="question-container">
+                    <div class="question-header">
+                        <div class="question-counter">
+                            Pergunta <span id="currentQuestionNum">1</span> de <span id="totalQuestions">10</span>
+                        </div>
+                        <div class="question-timer">
+                            <i class="fas fa-clock"></i> <span id="timer">20</span>s
+                        </div>
+                    </div>
+                    
+                    <div class="question-text" id="questionText">Qual é a capital do Brasil?</div>
+                    
+                    <div class="question-options">
+                        <div class="option" id="optionA">
+                            <div class="option-letter">A</div>
+                            <div class="option-text">Rio de Janeiro</div>
+                            <div class="option-votes">0 <span class="option-votes-percentage">(0%)</span></div>
+                            <div class="option-progress" style="width: 0%"></div>
+                        </div>
+                        <div class="option" id="optionB">
+                            <div class="option-letter">B</div>
+                            <div class="option-text">Brasília</div>
+                            <div class="option-votes">0 <span class="option-votes-percentage">(0%)</span></div>
+                            <div class="option-progress" style="width: 0%"></div>
+                        </div>
+                        <div class="option" id="optionC">
+                            <div class="option-letter">C</div>
+                            <div class="option-text">São Paulo</div>
+                            <div class="option-votes">0 <span class="option-votes-percentage">(0%)</span></div>
+                            <div class="option-progress" style="width: 0%"></div>
+                        </div>
+                        <div class="option" id="optionD">
+                            <div class="option-letter">D</div>
+                            <div class="option-text">Salvador</div>
+                            <div class="option-votes">0 <span class="option-votes-percentage">(0%)</span></div>
+                            <div class="option-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Popup de resultados -->
+                <div id="resultContainer" class="result-container">
+                    <h2>Resultado da Pergunta</h2>
+                    <div id="correctAnswerText" class="correct-answer"></div>
+                    <div id="explanationText" class="explanation"></div>
+                    <div class="votes-summary">
+                        <div class="vote-stat">
+                            <div class="number" id="totalVotes">0</div>
+                            <div class="label">Votos Totais</div>
+                        </div>
+                        <div class="vote-stat">
+                            <div class="number" id="correctVotes">0</div>
+                            <div class="label">Votos Corretos</div>
+                        </div>
+                        <div class="vote-stat">
+                            <div class="number" id="correctPercentage">0%</div>
+                            <div class="label">Taxa de Acerto</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Overlay para escurecer o fundo quando o popup estiver ativo -->
+                <div id="quizOverlay" class="quiz-overlay"></div>
+                
+                <!-- Mensagem de contabilização de votos -->
+                <div id="countingVotes" class="counting-votes">
+                    <i class="fas fa-spinner fa-spin"></i> Contabilizando votos...
+                </div>
+            </div>
+            
+            <!-- Coluna 3: Chat ao vivo -->
+            <div class="quiz-sidebar right">
+                <div class="live-chat">
+                    <h3><i class="fas fa-comments"></i> Chat ao Vivo</h3>
+                    
+                    <!-- Formulário simplificado para conectar ao chat do YouTube -->
+                    <div class="youtube-chat-connect">
+                        <input type="url" id="youtubeUrlDirect" placeholder="URL do YouTube" class="youtube-url-input">
+                        <button id="connectYoutubeChat" class="btn secondary btn-sm">Conectar</button>
+                    </div>
+                    
+                    <div class="chat-container" id="chatContainer">
+                        <div class="chat-message system">
+                            <div class="message-author system">Sistema</div>
+                            <div class="message-text">Chat será exibido quando o quiz for iniciado.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Usando CDNs para jQuery e Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+    
+    <!-- Script para conexão direta com o YouTube -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Inicializando conexão direta com o YouTube");
+            
+            const connectButton = document.getElementById('connectYoutubeChat');
+            const urlInput = document.getElementById('youtubeUrlDirect');
+            const chatContainer = document.getElementById('chatContainer');
+            
+            // Configurar Socket.IO para receber evento de limpar chat
+            const socket = io({
+                transports: ['websocket'],
+                upgrade: false,
+                reconnectionAttempts: 10,
+                reconnectionDelay: 1000,
+                timeout: 60000,
+                forceNew: true,
+                path: '/socket.io/',
+                query: {
+                    t: new Date().getTime(),
+                    EIO: '4'  // Forçar Engine.IO v4
+                },
+                extraHeaders: {
+                    'Cache-Control': 'no-cache',
+                    'Pragma': 'no-cache'
+                }
+            });
+            
+            // Adicionar log para monitorar o tipo de transporte
+            socket.on('connect', function() {
+                console.log('Chat - Conectado usando transporte:', socket.io.engine.transport.name);
+                
+                if (socket.io.engine.transport.name === 'websocket') {
+                    console.log('Chat - Conexão WebSocket estabelecida com sucesso!');
+                } else {
+                    console.warn('Chat - Não está usando WebSocket! Usando:', socket.io.engine.transport.name);
+                }
+            });
+            
+            socket.on('clear_chat', function(data) {
+                console.log("Recebido evento clear_chat:", data);
+                if (chatContainer) {
+                    // Limpar o chat
+                    chatContainer.innerHTML = `
+                        <div class="chat-message system">
+                            <div class="message-author system">Sistema</div>
+                            <div class="message-text">${data.message}</div>
+                        </div>
+                    `;
+                }
+            });
+            
+            if (!connectButton || !urlInput) {
+                console.error("Elementos de conexão não encontrados");
+                return;
+            }
+            
+            // Carregar URL atual
+            fetch('/api/config')
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.youtube_url) {
+                        urlInput.value = data.youtube_url;
+                    }
+                })
+                .catch(error => console.error('Erro ao carregar URL:', error));
+            
+            // Adicionar evento de clique ao botão
+            connectButton.addEventListener('click', function() {
+                const url = urlInput.value.trim();
+                if (!url) {
+                    alert('Por favor, insira uma URL do YouTube válida');
+                    return;
+                }
+                
+                // Mostrar mensagem de carregamento
+                if (chatContainer) {
+                    chatContainer.innerHTML += `
+                        <div class="chat-message system">
+                            <div class="message-author system">Sistema</div>
+                            <div class="message-text">Conectando ao chat do YouTube...</div>
+                        </div>
+                    `;
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+                
+                // Enviar URL para o servidor
+                fetch('/api/connect-youtube', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ url: url })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        if (chatContainer) {
+                            chatContainer.innerHTML += `
+                                <div class="chat-message system error">
+                                    <div class="message-author system">Sistema</div>
+                                    <div class="message-text">Erro ao conectar: ${data.message || 'Erro desconhecido'}</div>
+                                </div>
+                            `;
+                            chatContainer.scrollTop = chatContainer.scrollHeight;
+                        }
+                    }
+                })
+                .catch(error => {
+                    if (chatContainer) {
+                        chatContainer.innerHTML += `
+                            <div class="chat-message system error">
+                                <div class="message-author system">Sistema</div>
+                                <div class="message-text">Erro ao conectar: ${error}</div>
+                            </div>
+                        `;
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

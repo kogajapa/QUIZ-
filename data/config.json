@@ -1,0 +1,11 @@
+{
+    "youtube_url": "https://www.youtube.com/watch?v=pRJT3n3fg50",
+    "answer_time": 20,
+    "vote_count_time": 8,
+    "result_display_time": 5,
+    "primary_color": "#e67e22",
+    "secondary_color": "#3498db",
+    "enable_chat_simulator": false,
+    "simulate_chat": false,
+    "vote_counting_time": 8
+}
