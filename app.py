@@ -19,7 +19,7 @@ app.config['SECRET_KEY'] = 'quiz-youtube-live-secret-key'
 socketio = SocketIO(
     app, 
     cors_allowed_origins="*", 
-    async_mode='threading',
+    async_mode='gevent',
     ping_timeout=120,               # Aumentado para 2 minutos
     ping_interval=5,                # Reduzido para 5 segundos para manter a conexão ativa
     max_http_buffer_size=10*1024*1024,  # Aumentado para 10MB
