@@ -19,7 +19,6 @@ app.config['SECRET_KEY'] = 'quiz-youtube-live-secret-key'
 socketio = SocketIO(
     app, 
     cors_allowed_origins="*", 
-    async_mode='gevent',
     ping_timeout=120,               # Aumentado para 2 minutos
     ping_interval=5,                # Reduzido para 5 segundos para manter a conexão ativa
     max_http_buffer_size=10*1024*1024,  # Aumentado para 10MB
@@ -1179,12 +1178,3 @@ if __name__ == '__main__':
     # Usar porta definida pelo ambiente ou 5000 como padrão
     port = int(os.environ.get('PORT', 5000))
     socketio.run(app, host='0.0.0.0', port=port, debug=False)
-else:
-    # Quando executado pelo Gunicorn
-    # Configurar uma URL de exemplo para testes se não houver uma configurada
-    if not quiz_config['youtube_url']:
-        quiz_config['youtube_url'] = 'https://www.youtube.com/watch?v=exemplo'
-        logger.info("URL de exemplo configurada para testes")
-    
-    # Iniciar o quiz automaticamente após 2 segundos
-    threading.Timer(2.0, auto_start_quiz).start()
