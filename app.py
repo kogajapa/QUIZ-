@@ -25,9 +25,9 @@ socketio = SocketIO(
     always_connect=True,            # Sempre conectar, mesmo com erros
     engineio_logger=True,           # Ativar logs do engineio para debug
     logger=True,                    # Ativar logs do socketio para debug
-    websocket=True,                 # Forçar uso de WebSocket
+    websocket=False,                # Desativar WebSocket, usar apenas polling
     path='/socket.io',              # Caminho explícito
-    allow_upgrades=True             # Permitir upgrades de protocolo
+    allow_upgrades=False            # Não permitir upgrades de protocolo
 )
 
 # Diretório para armazenar dados

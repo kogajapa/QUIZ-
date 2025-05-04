@@ -59,20 +59,15 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             // Tentar conectar via Socket.IO
             socket = io({
-                transports: ['websocket', 'polling'],  // Tentar WebSocket primeiro, fallback para polling
-                upgrade: true,                        // Permitir upgrade de polling para websocket
+                transports: ['polling'],  // Usar apenas polling, já que WebSockets estão falhando no Render
+                upgrade: false,           // Não tentar upgrade para websocket
                 reconnectionAttempts: MAX_RECONNECT_ATTEMPTS,
                 reconnectionDelay: 1000,
                 timeout: 60000,
                 forceNew: true,
                 path: '/socket.io/',
                 query: {
-                    t: new Date().getTime(),
-                    EIO: '4'  // Forçar Engine.IO v4
-                },
-                extraHeaders: {
-                    'Cache-Control': 'no-cache',
-                    'Pragma': 'no-cache'
+                    t: new Date().getTime()
                 }
             });
             
