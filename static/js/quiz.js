@@ -59,9 +59,9 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             // Tentar conectar via Socket.IO
             socket = io({
-                transports: ['websocket'],
-                upgrade: false,
-                reconnectionAttempts: 10,
+                transports: ['websocket', 'polling'],  // Tentar WebSocket primeiro, fallback para polling
+                upgrade: true,                        // Permitir upgrade de polling para websocket
+                reconnectionAttempts: MAX_RECONNECT_ATTEMPTS,
                 reconnectionDelay: 1000,
                 timeout: 60000,
                 forceNew: true,

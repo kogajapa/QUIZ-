@@ -162,8 +162,8 @@
             
             // Configurar Socket.IO para receber evento de limpar chat
             const socket = io({
-                transports: ['websocket'],
-                upgrade: false,
+                transports: ['websocket', 'polling'],  // Tentar WebSocket primeiro, fallback para polling
+                upgrade: true,                        // Permitir upgrade de polling para websocket
                 reconnectionAttempts: 10,
                 reconnectionDelay: 1000,
                 timeout: 60000,
