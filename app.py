@@ -1179,3 +1179,12 @@ if __name__ == '__main__':
     # Usar porta definida pelo ambiente ou 5000 como padrão
     port = int(os.environ.get('PORT', 5000))
     socketio.run(app, host='0.0.0.0', port=port, debug=False)
+else:
+    # Quando executado pelo Gunicorn
+    # Configurar uma URL de exemplo para testes se não houver uma configurada
+    if not quiz_config['youtube_url']:
+        quiz_config['youtube_url'] = 'https://www.youtube.com/watch?v=exemplo'
+        logger.info("URL de exemplo configurada para testes")
+    
+    # Iniciar o quiz automaticamente após 2 segundos
+    threading.Timer(2.0, auto_start_quiz).start()
